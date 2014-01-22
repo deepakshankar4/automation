@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration PUBLIC "-//LOGGER" "http://logging.apache.org/log4j/1.2/apidocs/org/apache/log4j/xml/doc-files/log4j.dtd">
+<log4j:configuration>
+
+	<!-- Console appender used during development -->
+	<appender name="StdoutAppender" class="org.apache.log4j.ConsoleAppender">
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{ISO8601}|%5p|%c{1}|%t|%m%n" />
+		</layout>
+	</appender>
+
+	<!-- service log file appender -->
+	<appender name="ServiceAppender" class="org.apache.log4j.RollingFileAppender">
+		<!-- Server location /apps/Codes/MP2/LandingStrips/logs/trimService/ -->
+		<param name="File" value="/serviceLog.log" />
+		<param name="MaxFileSize" value="10240KB" />
+		<param name="MaxBackupIndex" value="7" />
+
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{ISO8601}|%5p|%c{1}|%t|%m%n" />
+		</layout>
+	</appender>
+
+	<!-- controller log file appender -->
+	<appender name="ControllerAppender" class="org.apache.log4j.RollingFileAppender">
+		<!-- Server location /apps/Codes/MP2/LandingStrips/logs/trimService/ -->
+		<param name="File" value="/controllerLog.log" />
+		<param name="MaxFileSize" value="10240KB" />
+		<param name="MaxBackupIndex" value="7" />
+
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{ISO8601}|%5p|%c{1}|%t|%m%n" />
+		</layout>
+	</appender>
+
+	<!-- dao log file appender -->
+	<appender name="DaoAppender" class="org.apache.log4j.RollingFileAppender">
+		<!-- Server location /apps/Codes/MP2/LandingStrips/logs/trimService/ -->
+		<param name="File" value="/daoLog.log" />
+		<param name="MaxFileSize" value="10240KB" />
+		<param name="MaxBackupIndex" value="7" />
+
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{ISO8601}|%5p|%c{1}|%t|%m%n" />
+		</layout>
+	</appender>
+
+	<!-- Set logging level of Hibernate, Springframework etc to Error -->
+	<logger name="org" additivity="false">
+		<level value="DEBUG" />
+		<appender-ref ref="StdoutAppender" />
+	</logger>
+
+	<!-- Set logger for dao -->
+	<logger name="com.tr.daoimpl" additivity="false">
+
+		<level value="DEBUG" />
+		<appender-ref ref="DaoAppender" />
+
+	</logger>
+
+	<!-- Set logger for service -->
+	<logger name="com.tr.serviceimpl" additivity="false">
+
+		<level value="DEBUG" />
+		<appender-ref ref="ServiceAppender" />
+
+	</logger>
+
+	<!-- Set logger for controller -->
+	<logger name="com.tr.controller" additivity="false">
+
+		<level value="DEBUG" />
+		<appender-ref ref="ControllerAppender" />
+
+	</logger>
+
+
+	<!-- <logger name="org.hibernate.SQL"> <level value="trace" /> <appender-ref 
+		ref="StdoutAppender" /> </logger> <logger name="org.hibernate.type"> <level 
+		value="trace" /> <appender-ref ref="StdoutAppender" /> </logger> -->
+
+
+	<!-- Log level of the application -->
+	<root>
+		<level value="debug" />
+		<appender-ref ref="FileAppender" />
+	</root>
+
+</log4j:configuration>
