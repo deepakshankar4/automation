@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright 2011: Thomson Reuters Global Resources. All Rights Reserved. 
+	Proprietary and Confidential information of TRGR. Disclosure, Use or Reproduction 
+	without the written authorization of TRGR is prohibited -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xmlns:jee="http://www.springframework.org/schema/jee" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+	xsi:schemaLocation="
+     http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
+     http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+     http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.2.xsd
+     http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
+     http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd
+     http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.2.xsd
+     http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.2.xsd
+     http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd
+     http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
+     http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd">
+
+
+
+	<!-- ==================================== -->
+	<!-- Component Scan & JNDI configuration -->
+	<!-- ==================================== -->
+
+	<context:component-scan base-package="com.thomsonreuters.trim" />
+
+	<jee:jndi-lookup id="dataSource" jndi-name="java:comp/env/jdbc/TrimService" />
+	<jee:jndi-lookup id="filesystems" jndi-name="java:comp/env/filesystemsRoot" />
+
+	<!-- ==================================== -->
+	<!-- Spring Data Repository configuration -->
+	<!-- ==================================== -->
+
+	<jpa:repositories base-package="com.thomsonreuters.trim.core.dao"
+		entity-manager-factory-ref="entityManagerFactory"
+		repository-impl-postfix="CustomImpl" />
+
+
+	<bean id="entityManagerFactory"
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="persistenceUnitName" value="trimService" />
+		<property name="dataSource" ref="dataSource" />
+		<property name="jpaVendorAdapter">
+			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+				<property name="databasePlatform" value="org.hibernate.dialect.Oracle10gDialect" />
+				<property name="showSql" value="true" />
+				<property name="generateDdl" value="false" />
+				<property name="database" value="ORACLE" />
+			</bean>
+		</property>
+	</bean>
+
+	<!-- ================================ -->
+	<!-- Spring Transaction configuration -->
+	<!-- ================================ -->
+	<tx:annotation-driven transaction-manager="transactionManager" />
+
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="entityManagerFactory" />
+	</bean>
+
+
+
+	<!-- ============================= -->
+	<!-- Spring MVC Rest configuration -->
+	<!-- ============================= -->
+
+
+	<mvc:annotation-driven />
+
+	<!-- Handles HTTP GET requests for /application/** by efficiently serving 
+		up static resources in the ${webappRoot}/application directory -->
+	<mvc:resources mapping="application/**" location="/" />
+
+	<!-- A one-off mapping to accommodate direct access to info.xml -->
+	<mvc:resources mapping="info.xml" location="/info.xml" />
+
+	<!-- Resolves views selected for rendering by @Controllers to .jsp resources 
+		in the /WEB-INF/views directory -->
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+
+	<aop:aspectj-autoproxy />
+	<!-- ===================== -->
+	<!-- Swagger Configuration -->
+	<!-- ===================== -->
+	<bean id="documentationController"
+		class="com.knappsack.swagger4springweb.controller.ApiDocumentationController"
+		p:baseControllerPackage="com.thomsonreuters.trim.rest"
+		p:baseModelPackage="com.thomsonreuters.trim.core.domain" p:apiVersion="v1">
+	</bean>
+
+	<bean id="jaxbContext" class="javax.xml.bind.JAXBContext"
+		factory-method="newInstance">
+		<constructor-arg index="0"
+			value="com.thomsonreuters.trim.utils.generated" />
+	</bean>
+
+</beans>
