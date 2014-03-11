@@ -2,11 +2,6 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="resources"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jre7">
-		<attributes>
-			<attribute name="owner.project.facets" value="java"/>
-		</attributes>
-	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Apache Tomcat v7.0">
 		<attributes>
 			<attribute name="owner.project.facets" value="jst.web"/>
@@ -15,20 +10,16 @@
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/aopalliance-1.0.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/asm-3.3.1.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/aspectjrt-1.7.4.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/aspectjtools-1.7.4.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/aspectjweaver-1.7.4.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/cas-client-core-3.1.12.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/cglib-2.2.2.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/commons-beanutils-1.7.0.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/commons-codec-1.8.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/commons-collections-3.1.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/commons-dbcp-1.2.2.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/commons-fileupload-1.3.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/commons-io-2.4.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/commons-lang-2.5.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/commons-lang-2.6.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/commons-lang3-3.1.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/commons-logging-1.1.1.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/commons-logging-api-1.1.jar"/>
@@ -39,8 +30,6 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/hibernate-jpa-2.0-api-1.0.1.Final.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/hibernate-jpamodelgen-1.2.0.Final.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jackson-annotations-2.2.0.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jackson-core-2.2.0.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jackson-databind-2.2.0.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/javassist-3.12.0.GA.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jaxb-api-2.1.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jaxb-impl-2.1.3.jar"/>
@@ -49,7 +38,6 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jdom-1.0.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jstl-1.2.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jta-1.1.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/log4j-1.2.17.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/lucene-core-2.3.2.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/lucene-highlighter-2.0.0.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/mockito-all-1.9.5.jar"/>
@@ -57,49 +45,75 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/org.json.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/persistence-api-1.0.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/recaptcha4j-0.0.7.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/scala-library-2.9.1.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/slf4j-api-1.7.5.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/slf4j-log4j12-1.7.5.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-aop-3.2.4.RELEASE.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-beans-3.2.4.RELEASE.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-context-3.2.4.RELEASE.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-context-support-3.2.4.RELEASE.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-core-3.2.4.RELEASE.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-data-commons-1.6.3.RELEASE.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-data-jpa-1.4.3.RELEASE.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-expression-3.2.2.RELEASE.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-expression-3.2.4.RELEASE.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-jdbc-3.2.2.RELEASE.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-jdbc-3.2.4.RELEASE.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-ldap-1.3.1.RELEASE-all.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-orm-3.2.2.RELEASE.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-orm-3.2.5.RELEASE.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-security-acl-3.1.3.RELEASE.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-security-cas-client-3.0.8.RELEASE.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-security-config-3.1.3.RELEASE.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-security-config-3.1.4.RELEASE.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-security-core-3.1.3.RELEASE.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-security-core-3.1.4.RELEASE.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-security-crypto-3.1.3.RELEASE.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-security-ldap-3.1.4.RELEASE.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-security-taglibs-3.1.3.RELEASE.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-security-taglibs-3.1.4.RELEASE.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-security-web-3.1.3.RELEASE.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-security-web-3.1.4.RELEASE.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-test-3.2.2.RELEASE.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-test-mvc-1.0.0.M1.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-tx-3.0.7.RELEASE.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-tx-3.2.2.RELEASE.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-web-3.2.4.RELEASE.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-webmvc-3.2.4.RELEASE.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/swagger-annotations_2.9.1-1.2.3.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/swagger-core_2.9.1-1.2.3.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/swagger4spring-web-0.1.7.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/ucp.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/hibernate-commons-annotations-4.0.1.Final.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/ehcache-1.2.3.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jboss-logging-3.1.0.GA.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/guava-11.0.2.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/reflections-0.9.8.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/classmate-0.9.0.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/guava-14.0.1.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jackson-core-2.2.1.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jackson-databind-2.2.1.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jackson-jaxrs-json-provider-2.0.0.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jackson-module-jaxb-annotations-2.0.0.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jsr311-api-1.1.1.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/paranamer-2.3.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/scalabeans-0.2.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/swagger-springmvc-0.6.5.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/swagger4spring-web-0.3.2.jar" sourcepath="C:/Users/uc167163/.m2/repository/com/knappsack/swagger4spring-web/0.3.2/swagger4spring-web-0.3.2-sources.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/asm-3.3.1.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/cglib-2.2.2.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/commons-lang-2.5.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/log4j-1.2.17.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/slf4j-api-1.7.5.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/slf4j-log4j12-1.7.5.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-security-crypto-3.1.3.RELEASE.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/swagger-jaxrs_2.10-1.3.0.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/swagger-jersey-jaxrs_2.10-1.3.0.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jackson-module-jsonSchema-2.1.0.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/joda-convert-1.2.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/joda-time-2.1.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/json4s-ast_2.10-3.2.4.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/json4s-core_2.10-3.2.4.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/json4s-ext_2.10-3.2.4.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/json4s-jackson_2.10-3.2.4.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/json4s-native_2.10-3.2.4.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jsr305-2.0.1.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/logback-classic-1.0.1.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/logback-core-1.0.1.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/scala-compiler-2.10.0.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/scala-library-2.10.3.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/scala-reflect-2.10.0.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/scalaj-collection_2.10-1.5.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/scalap-2.10.0.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/servlet-api-2.5.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/swagger-core_2.10-1.3.2.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/xml-apis-1.0.b2.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-aop-3.2.5.RELEASE.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-beans-3.2.5.RELEASE.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-context-3.2.5.RELEASE.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-core-3.2.5.RELEASE.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-expression-3.2.5.RELEASE.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-web-3.2.5.RELEASE.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-webmvc-3.2.5.RELEASE.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/swagger-annotations-1.3.2.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jackson-module-scala_2.10-2.3.0.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

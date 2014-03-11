@@ -1,0 +1,36 @@
+<!-- Copyright 2013: Thomson Reuters Global Resources. All Rights Reserved. 
+	Proprietary and Confidential information of TRGR. Disclosure, Use or Reproduction 
+	without the written authorization of TRGR is prohibited -->
+
+<Context swallowOutput="true">
+
+	<Resource name="jdbc/TrimService" auth="Container"
+		type="oracle.ucp.jdbc.PoolDataSource" factory="oracle.ucp.jdbc.PoolDataSourceImpl"
+		connectionFactoryClassName="oracle.jdbc.pool.OracleDataSource"
+		driverClassName="oracle.jdbc.driver.OracleDriver"
+		url="jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=c157sayctcod.int.westgroup.com)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=TRIM_SAND.int.westgroup.com)))"
+		user="TRIM_SAND_USER" password="TRIM_SAND_USER" minPoolSize="1"
+		maxPoolSize="20" maxStatements="50" connectionWaitTimeout="120" />
+
+	<Environment name="application.properties.location"
+		value="classpath:environment/sand.application.properties" type="java.lang.String"
+		override="false" />
+
+	<!-- Codes Single Sign-On (SSO) -->
+	<Environment name="casClientUrl"
+		value="http://localhost:8084/trimService/j_spring_cas_security_check"
+		type="java.lang.String" override="false" description="CAS Client URL" />
+
+	<Environment name="casServerUrl"
+		value="https://sand.magellan3.int.westgroup.com:8444/codesSSO" type="java.lang.String"
+		override="false" description="CAS Server URL" />
+
+	<Environment name="casServerLoginUrl"
+		value="https://sand.magellan3.int.westgroup.com:8444/codesSSO/login"
+		type="java.lang.String" override="false" description="CAS Server Login URL" />
+
+	<Environment name="filesystemsRoot"
+		value="/apps/Codes/MP2/LandingStrips/trim/filesystems/" type="java.io.File"
+		override="false" description="File object representing the root of 'trim filesystems'" />
+</Context>
+
