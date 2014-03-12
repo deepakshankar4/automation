@@ -1,5 +1,5 @@
 .metadata/**
-servers/**
+Servers/**
 RemoteSystemsTempFiles/**
 trimService/**
 pullJars/**
