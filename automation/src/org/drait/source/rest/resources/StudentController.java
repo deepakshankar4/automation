@@ -9,6 +9,8 @@ import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 import org.drait.headers.errorandstatuscodes.StatusCodes;
 import org.drait.source.domain.Student;
+import org.drait.source.service.StudentService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -29,25 +31,37 @@ import com.wordnik.swagger.annotations.ApiParam;
 @RequestMapping(value = "/students")
 public class StudentController {
 
-	private static final String MAXRESULT = "50";
+	@Autowired
+	private StudentService studentService;
 
-	@RequestMapping(method = RequestMethod.GET)
+	@RequestMapping(value = "/{studentFirstName}", method = RequestMethod.GET)
 	@ApiOperation(value = "Get entity by name", notes = "Search input entity name in the ENTITY table and returns entities starting with the given name")
 	@ApiErrors(value = {
 			@ApiError(code = StatusCodes.OK, reason = "Success"),
 			@ApiError(code = StatusCodes.BAD_REQUEST, reason = "Bad request due to invalid input") })
-	public ResponseEntity<List<Student>> getStudentsByName(
-			@ApiParam(value = "Student name", required = true) @RequestParam(value = "studentFirstName", required = true) final String studentName,
-			@ApiParam(value = "Maximum number of entities to return.") @RequestParam(value = "count", required = false, defaultValue = MAXRESULT) final int count) {
-		if (StringUtils.isBlank(studentName)) {
+	public ResponseEntity<List<Student>> getStudentsByFirstName(
+			@ApiParam(value = "Student first name", required = true) @RequestParam(value = "studentFirstName", required = true) final String studentFirstName) {
+		if (StringUtils.isBlank(studentFirstName)) {
 			throw new IllegalArgumentException("invalid input student name");
 		}
-		Student s1 = new Student();
-		Student s2 = new Student();
 		List<Student> studentList = new ArrayList<>();
+		studentList = studentService.getStudentByFirstName(studentFirstName);
 
-		studentList.add(s1);
-		studentList.add(s2);
+		return new ResponseEntity<List<Student>>(studentList, HttpStatus.OK);
+	}
+
+	@RequestMapping(value = "/{studentLastName}", method = RequestMethod.GET)
+	@ApiOperation(value = "Get entity by name", notes = "Search input entity name in the ENTITY table and returns entities starting with the given name")
+	@ApiErrors(value = {
+			@ApiError(code = StatusCodes.OK, reason = "Success"),
+			@ApiError(code = StatusCodes.BAD_REQUEST, reason = "Bad request due to invalid input") })
+	public ResponseEntity<List<Student>> getStudentsByLastName(
+			@ApiParam(value = "Student first name", required = true) @RequestParam(value = "studentLastName", required = true) final String studentLastName) {
+		if (StringUtils.isBlank(studentLastName)) {
+			throw new IllegalArgumentException("invalid input student name");
+		}
+		List<Student> studentList = new ArrayList<>();
+		studentList = studentService.getStudentByLastName(studentLastName);
 
 		return new ResponseEntity<List<Student>>(studentList, HttpStatus.OK);
 	}

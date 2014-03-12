@@ -6,26 +6,31 @@
 <link href='//fonts.googleapis.com/css?family=Droid+Sans:400,700'
 	rel='stylesheet' type='text/css' />
  -->
-<link href='swagger-ui/css/hightlight.default.css' media='screen' rel='stylesheet'
-	type='text/css' />
+<link href='swagger-ui/css/hightlight.default.css' media='screen'
+	rel='stylesheet' type='text/css' />
 <link href='swagger-ui/css/screen.css' media='screen' rel='stylesheet'
 	type='text/css' />
 <script src='swagger-ui/lib/jquery-1.9.1.min.js' type='text/javascript'></script>
-<script src='swagger-ui/lib/jquery.slideto.min.js' type='text/javascript'></script>
+<script src='swagger-ui/lib/jquery.slideto.min.js'
+	type='text/javascript'></script>
 <script src='swagger-ui/lib/jquery.wiggle.min.js' type='text/javascript'></script>
 <script src='swagger-ui/lib/jquery.ba-bbq.min.js' type='text/javascript'></script>
-<script src='swagger-ui/lib/handlebars-1.0.rc.1.js' type='text/javascript'></script>
+<script src='swagger-ui/lib/handlebars-1.0.rc.1.js'
+	type='text/javascript'></script>
 <script src='swagger-ui/lib/underscore-min.js' type='text/javascript'></script>
 <script src='swagger-ui/lib/backbone-min.js' type='text/javascript'></script>
 <script src='swagger-ui/lib/swagger.js' type='text/javascript'></script>
 <script src='swagger-ui/swagger-ui.js' type='text/javascript'></script>
-<script src='swagger-ui/lib/highlight.7.3.pack.js' type='text/javascript'></script>
+<script src='swagger-ui/lib/highlight.7.3.pack.js'
+	type='text/javascript'></script>
 
 <script type="text/javascript">
-			//headers: { "content-type": "application/x-www-form-urlencoded"},
+	//headers: { "content-type": "application/x-www-form-urlencoded"},
 	$(function() {
 		window.swaggerUi = new SwaggerUi({
-			discoveryUrl : "http://"+ location.host+"/automation/api/resourceList",
+			
+			discoveryUrl : "http://" + location.host
+					+ "/automation/api/resourceList",
 			dom_id : "swagger-ui-container",
 			supportHeaderParams : false,
 			supportedSubmitMethods : [ 'get', 'post', 'put', 'delete' ],
@@ -38,7 +43,10 @@
 				$('pre code').each(function(i, e) {
 					hljs.highlightBlock(e)
 				});
-				$('.fullwidth').find('th').each(function(i){ if($(this).html() == 'HTTP Status Code') $(this).html("HTTP/TRIM Status");});
+				$('.fullwidth').find('th').each(function(i) {
+					if ($(this).html() == 'HTTP Status Code')
+						$(this).html("HTTP/Automation Status");
+				});
 			},
 			onFailure : function(data) {
 				if (console) {
@@ -50,9 +58,8 @@
 		});
 
 		window.swaggerUi.load();
-		
-	});
 
+	});
 </script>
 </head>
 
