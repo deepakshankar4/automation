@@ -1,106 +1,96 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
+<!DOCTYPE html>
 <html>
-
 <head>
-    <title>swagger4spring-web-example API documentation</title>
-    <link href='http://fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css'/>
+<title></title>
+<!-- 
+<link href='//fonts.googleapis.com/css?family=Droid+Sans:400,700'
+	rel='stylesheet' type='text/css' />
+ -->
+<link href='swagger-ui/css/hightlight.default.css' media='screen' rel='stylesheet'
+	type='text/css' />
+<link href='swagger-ui/css/screen.css' media='screen' rel='stylesheet'
+	type='text/css' />
+<script src='swagger-ui/lib/jquery-1.9.1.min.js' type='text/javascript'></script>
+<script src='swagger-ui/lib/jquery.slideto.min.js' type='text/javascript'></script>
+<script src='swagger-ui/lib/jquery.wiggle.min.js' type='text/javascript'></script>
+<script src='swagger-ui/lib/jquery.ba-bbq.min.js' type='text/javascript'></script>
+<script src='swagger-ui/lib/handlebars-1.0.rc.1.js' type='text/javascript'></script>
+<script src='swagger-ui/lib/underscore-min.js' type='text/javascript'></script>
+<script src='swagger-ui/lib/backbone-min.js' type='text/javascript'></script>
+<script src='swagger-ui/lib/swagger.js' type='text/javascript'></script>
+<script src='swagger-ui/swagger-ui.js' type='text/javascript'></script>
+<script src='swagger-ui/lib/highlight.7.3.pack.js' type='text/javascript'></script>
 
-    <link href='<c:url value='swagger-ui/css/highlight.default.css' />' media='screen'
-          rel='stylesheet' type='text/css'/>
-    <link href='<c:url value='swagger-ui/css/screen.css' />' media='screen' rel='stylesheet'
-          type='text/css'/>
-    <script type="text/javascript" src="<c:url value='swagger-ui/lib/shred.bundle.js'/>"></script>
-    <script src='<c:url value='swagger-ui/lib/jquery-1.8.0.min.js' />' type='text/javascript'></script>
-    <script src='<c:url value='swagger-ui/lib/jquery.slideto.min.js' />'
-            type='text/javascript'></script>
-    <script src='<c:url value='swagger-ui/lib/jquery.wiggle.min.js' />'
-            type='text/javascript'></script>
-    <script src='<c:url value='swagger-ui/lib/jquery.ba-bbq.min.js' />'
-            type='text/javascript'></script>
-    <script src='<c:url value='swagger-ui/lib/handlebars-1.0.0.js' />'
-            type='text/javascript'></script>
-    <script src='<c:url value='swagger-ui/lib/underscore-min.js' />' type='text/javascript'></script>
-    <script src='<c:url value='swagger-ui/lib/backbone-min.js' />' type='text/javascript'></script>
-    <script src='<c:url value='swagger-ui/lib/swagger.js' />' type='text/javascript'></script>
-    <script src='<c:url value='swagger-ui/swagger-ui.js' />' type='text/javascript'></script>
-    <script src='<c:url value='swagger-ui/lib/highlight.7.3.pack.js' />'
-            type='text/javascript'></script>
-    <script src='<c:url value='swagger-ui/lib/swagger-oauth.js' />' type='text/javascript'></script>
+<script type="text/javascript">
+			//headers: { "content-type": "application/x-www-form-urlencoded"},
+	$(function() {
+		window.swaggerUi = new SwaggerUi({
+			discoveryUrl : "http://"+ location.host+"/automation/api/resourceList",
+			dom_id : "swagger-ui-container",
+			supportHeaderParams : false,
+			supportedSubmitMethods : [ 'get', 'post', 'put', 'delete' ],
+			onComplete : function(swaggerApi, swaggerUi) {
+				if (console) {
+					console.log("Loaded SwaggerUI")
+					console.log(swaggerApi);
+					console.log(swaggerUi);
+				}
+				$('pre code').each(function(i, e) {
+					hljs.highlightBlock(e)
+				});
+				$('.fullwidth').find('th').each(function(i){ if($(this).html() == 'HTTP Status Code') $(this).html("HTTP/TRIM Status");});
+			},
+			onFailure : function(data) {
+				if (console) {
+					console.log("Unable to Load SwaggerUI");
+					console.log(data);
+				}
+			},
+			docExpansion : "none"
+		});
 
-<%--<style type="text/css">--%>
-        <%--.swagger-ui-wrap {--%>
-            <%--max-width: 960px;--%>
-            <%--margin-left: auto;--%>
-            <%--margin-right: auto;--%>
-        <%--}--%>
+		window.swaggerUi.load();
+		
+	});
 
-        <%--#message-bar {--%>
-            <%--min-height: 30px;--%>
-            <%--text-align: center;--%>
-            <%--padding-top: 10px;--%>
-        <%--}--%>
-    <%--</style>--%>
-
-    <script type="text/javascript" th:inline="javascript">
-        $(document).ready(function () {
-
-            displaySwaggerDocuments();
-
-            function displaySwaggerDocuments() {
-                var resourceUrl = '<c:url value="/documentation/resourceList"/>';
-                window.swaggerUi = new SwaggerUi({
-                    url: resourceUrl,
-                    dom_id: "swagger-ui-container",
-                    supportHeaderParams: false,
-                    supportedSubmitMethods: ['get', 'post', 'put', 'delete'],
-                    onComplete: function (swaggerApi, swaggerUi) {
-                        if (console) {
-                            console.log("Loaded SwaggerUI")
-                            console.log(swaggerApi);
-                            console.log(swaggerUi);
-                        }
-                        $('pre code').each(function (i, e) {
-                            hljs.highlightBlock(e)
-                        });
-                        if(typeof initOAuth == "function")
-                            initOAuth();
-                    },
-                    onFailure: function (data) {
-                        if (console) {
-                            console.log("Unable to Load SwaggerUI");
-                            console.log(data);
-                        }
-                    },
-                    docExpansion: "none"
-                });
-
-                $('#input_apiKey').change(function() {
-                    var key = $('#input_apiKey')[0].value;
-                    log("key: " + key);
-                    if(key && key.trim() != "") {
-                        log("added key " + key);
-                        window.authorizations.add("key", new ApiKeyAuthorization("api_key", key, "query"));
-                    }
-                })
-                window.swaggerUi.load();
-            }
-        });
-    </script>
+</script>
 </head>
 
 <body>
+	<div id='header'>
+		<div class="swagger-ui-wrap">
+			<!--         <a id="logo" href="http://swagger.wordnik.com">TRIM</a> -->
+			<a id="logo" href="/automation/">AUTOMATION</a>
 
-<div id="message-bar" class="swagger-ui-wrap">
-    &nbsp;
-</div>
+			<form id='api_selector'>
 
-<div id="swagger-ui-container" class="swagger-ui-wrap">
+				<!-- 	 <div class='input icon-btn'>
+                <img id="show-pet-store-icon" src="images/pet_store_api.png" title="Show Swagger Petstore Example Apis">
+            </div>
+            <div class='input icon-btn'>
+                <img id="show-wordnik-dev-icon" src="images/wordnik_api.png" title="Show Wordnik Developer Apis">
+            </div> 
+				 <div class='input'><input placeholder="http://example.com/api" id="input_baseUrl" name="baseUrl"
+                                      type="text"/></div> 
+				<div class='input'>
+					<input placeholder="api_key" id="input_apiKey" name="apiKey"
+						type="text" />
+				</div>
+				<div class='input'>
+					<a id="explore" href="#">Explore</a>
+				</div>
+				-->
 
-</div>
-
+			</form>
+		</div>
+	</div>
+	<div class="swagger-ui-wrap">
+		<div id="message-bar">&nbsp;</div>
+		<div>
+			<h1>API document</h1>
+		</div>
+		<div id="swagger-ui-container"></div>
+	</div>
 </body>
 
 </html>

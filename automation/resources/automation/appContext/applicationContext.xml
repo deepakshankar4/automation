@@ -44,30 +44,7 @@
 		<property name="password" value="${database.password}" />
 	</bean>
 
-	<!-- ===================== -->
-	<!-- Swagger Configuration -->
-	<!-- ===================== -->
 
-	<mvc:annotation-driven>
-
-		<mvc:message-converters>
-			<bean class="org.springframework.http.converter.StringHttpMessageConverter" />
-			<bean
-				class="org.springframework.http.converter.ByteArrayHttpMessageConverter" />
-			<bean
-				class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
-				<property name="objectMapper">
-					<bean class="com.knappsack.swagger4springweb.util.ScalaObjectMapper" />
-				</property>
-			</bean>
-		</mvc:message-converters>
-	</mvc:annotation-driven>
-
-	<bean id="documentationController"
-		class="com.knappsack.swagger4springweb.controller.ApiDocumentationController"
-		p:basePath="http://localhost:8084/automation" p:baseControllerPackage="com.knappsack.swagger4springweb.controllers.api"
-		p:baseModelPackage="com.knappsack.swagger4springweb.models"
-		p:apiVersion="v1" />
 
 
 
@@ -118,12 +95,18 @@
 	</bean>
 
 	<aop:aspectj-autoproxy />
+	<!-- ===================== -->
+	<!-- Swagger Configuration -->
+	<!-- ===================== -->
+	<bean id="documentationController"
+		class="com.knappsack.swagger4springweb.controller.ApiDocumentationController"
+		p:baseControllerPackage="orgt.drait.source.rest"
+		p:baseModelPackage="org.drait.source.domain" p:apiVersion="v1">
+	</bean>
 
 
 
-	<!-- <bean id="jaxbContext" class="javax.xml.bind.JAXBContext" factory-method="newInstance"> 
-		<constructor-arg index="0" value="com.thomsonreuters.trim.utils.generated" 
-		/> </bean> -->
+
 
 </beans>
 

@@ -4,31 +4,38 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<link rel="stylesheet" type="text/css"
-	href="automationUI/assets/css/bootstrap.css">
+<link
+	href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"
+	rel="stylesheet">
 <title>HOME</title>
 
 </head>
 <body>
-	<div class="navbar">
-		<a href="#" class="navbar-brand"> Automation</a>
-	</div>
+	<nav class="navbar navbar-default navbar-static-top" role="navigation">
+		<div class="button">
+			<a href="#" class="navbar-brand"> Automation</a>
+		</div>
+	</nav>
 	<div class="container">
-		<div class="row">
-			<div class="span12">
-				<h2>Resources!</h2>
-				<h3>
-					<a href="/automation/application/swagger"> API <small>Documentation</small></a>
-				</h3>
+		<div class="well">
+			<div class="row">
+				<div class="span12">
+					<h2>Resources!</h2>
+					<hr>
+					<h3>
+						<a href="/automation/application/swagger"> API <small>Documentation</small></a>
+					</h3>
+				</div>
 			</div>
 		</div>
 	</div>
 
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 	<script src="https://code.jquery.com/jquery.js"></script>
-	<!-- Include all compiled plugins (below), or include individual files 
-            as needed -->
-	<script src="automationUI/assets/js/bootstrap.js"></script>
+	<!-- Include all compiled plugins (below), or include individual files as needed -->
+
+	<script
+		src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 
 </body>
 </html>

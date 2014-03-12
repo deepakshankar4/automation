@@ -16,10 +16,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.wordnik.swagger.annotations.ApiError;
+import com.wordnik.swagger.annotations.ApiErrors;
 import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.ApiParam;
-import com.wordnik.swagger.annotations.ApiResponse;
-import com.wordnik.swagger.annotations.ApiResponses;
 
 /**
  * @author UC167163
@@ -32,11 +32,10 @@ public class StudentController {
 	private static final String MAXRESULT = "50";
 
 	@RequestMapping(method = RequestMethod.GET)
-	@ApiOperation(value = "Get students by name", notes = "Search input student name in the STUDENT table and returns students starting with the given name.", produces = "application/json")
-	@ApiResponses(value = {
-			@ApiResponse(code = StatusCodes.OK, message = "SUCCESS"),
-			@ApiResponse(code = StatusCodes.BAD_REQUEST, message = "Invalid input type student name"),
-			@ApiResponse(code = StatusCodes.NO_CONTENT, message = "Please provide a inputt student name") })
+	@ApiOperation(value = "Get entity by name", notes = "Search input entity name in the ENTITY table and returns entities starting with the given name")
+	@ApiErrors(value = {
+			@ApiError(code = StatusCodes.OK, reason = "Success"),
+			@ApiError(code = StatusCodes.BAD_REQUEST, reason = "Bad request due to invalid input") })
 	public ResponseEntity<List<Student>> getStudentsByName(
 			@ApiParam(value = "Student name", required = true) @RequestParam(value = "studentFirstName", required = true) final String studentName,
 			@ApiParam(value = "Maximum number of entities to return.") @RequestParam(value = "count", required = false, defaultValue = MAXRESULT) final int count) {
