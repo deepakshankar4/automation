@@ -26,12 +26,7 @@ public class ApplicationController {
 	private static final Logger LOGGER = Logger
 			.getLogger(ApplicationController.class.getName());
 
-	@RequestMapping(value = "/swagger", method = RequestMethod.GET)
-	public ModelAndView swagger() {
-		ModelAndView modelAndView = new ModelAndView("swagger");
-
-		return modelAndView;
-	}
+	
 
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView home(Locale locale, Model model) {

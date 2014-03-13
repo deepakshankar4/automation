@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans:beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc" xmlns:security="http://www.springframework.org/schema/security"
+	xmlns:jee="http://www.springframework.org/schema/jee" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xsi:schemaLocation="http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd
+		http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+		http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+
+	<!-- ======================================= -->
+	<!-- Component Scan & database configuration -->
+	<!-- ======================================= -->
+
+	<context:component-scan base-package="org.drait.source"></context:component-scan>
+
+	<context:property-placeholder location="classpath:database.properties" />
+
+	<!-- ==================================== -->
+	<!-- Spring Data Repository configuration -->
+	<!-- ==================================== -->
+
+	<jpa:repositories base-package="org.drait.source.dao"
+		entity-manager-factory-ref="entityManagerFactory"
+		repository-impl-postfix="CustomImpl" />
+
+	<beans:bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<beans:property name="driverClassName" value="${database.driver}" />
+		<beans:property name="url" value="${database.url}" />
+		<beans:property name="username" value="${database.user}" />
+		<beans:property name="password" value="${database.password}" />
+
+	</beans:bean>
+
+
+
+
+
+	<beans:bean id="entityManagerFactory"
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<beans:property name="persistenceUnitName" value="automation" />
+
+		<beans:property name="dataSource" ref="dataSource" />
+		<beans:property name="jpaVendorAdapter">
+			<beans:bean
+				class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+				<beans:property name="databasePlatform"
+					value="org.hibernate.dialect.Oracle10gDialect" />
+				<beans:property name="showSql" value="true" />
+				<beans:property name="generateDdl" value="true" />
+				<beans:property name="database" value="ORACLE" />
+			</beans:bean>
+		</beans:property>
+	</beans:bean>
+
+	<!-- ================================ -->
+	<!-- Spring Transaction configuration -->
+	<!-- ================================ -->
+	<tx:annotation-driven transaction-manager="transactionManager" />
+
+	<beans:bean id="transactionManager"
+		class="org.springframework.orm.jpa.JpaTransactionManager">
+		<beans:property name="entityManagerFactory" ref="entityManagerFactory" />
+	</beans:bean>
+
+
+
+	<!-- ============================= -->
+	<!-- Spring MVC Rest configuration -->
+	<!-- ============================= -->
+
+
+	<mvc:annotation-driven />
+
+	<!-- Handles HTTP GET requests for /application/** by efficiently serving 
+		up static resources in the ${webappRoot}/application directory -->
+	<mvc:resources mapping="application/**" location="/" />
+
+
+	<!-- Resolves views selected for rendering by @Controllers to .jsp resources 
+		in the /WEB-INF/views directory -->
+	<beans:bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<beans:property name="prefix" value="/" />
+		<beans:property name="suffix" value=".jsp" />
+	</beans:bean>
+
+	<aop:aspectj-autoproxy />
+
+
+
+
+
+
+</beans:beans>
+

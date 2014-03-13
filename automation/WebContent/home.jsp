@@ -23,7 +23,7 @@
 					<h2>Resources!</h2>
 					<hr>
 					<h3>
-						<a href="/automation/application/swagger"> API <small>Documentation</small></a>
+						<a href="/automation/documentation/"> API <small>Documentation</small></a>
 					</h3>
 				</div>
 			</div>
