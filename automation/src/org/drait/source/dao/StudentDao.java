@@ -33,4 +33,7 @@ public interface StudentDao extends JpaRepository<Student, Uuid> {
 	 */
 	@Query(value = "SELECT * FROM STUDENT WHERE LAST_NAME LIKE ?1", nativeQuery = true)
 	List<Student> getStudentDetailsByLastName(String lname);
+
+	@Query(value = "SELECT * FROM STUDENT", nativeQuery = true)
+	List<Student> getAllStudents();
 }

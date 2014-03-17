@@ -17,4 +17,8 @@ public interface StudentService {
 
 	List<Student> getStudentByLastName(String lName);
 
+	Student createNewStudent(Student inputStudent);
+
+	List<Student> getAllStudents();
+
 }

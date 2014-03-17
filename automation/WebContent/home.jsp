@@ -13,7 +13,15 @@
 <body>
 	<nav class="navbar navbar-default navbar-static-top" role="navigation">
 		<div class="button">
-			<a href="#" class="navbar-brand"> Automation</a>
+			<a href="/automation/" class="navbar-brand"><span
+				class="glyphicon glyphicon-home"></span> Automation home</a>
+		</div>
+		<div class="navbar-right">
+			<ol class="breadcrumb">
+				<li class="active">Home</li>
+
+				<li><a href="/automation/documentation/">Documentation</a></li>
+			</ol>
 		</div>
 	</nav>
 	<div class="container">

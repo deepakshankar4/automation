@@ -7,9 +7,11 @@ import java.util.List;
 
 import org.drait.source.dao.StudentDao;
 import org.drait.source.domain.Student;
+import org.drait.source.exception.AutomationTransactionException;
 import org.drait.source.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * @author DEEPAK
@@ -43,6 +45,21 @@ public class StudentServiceImpl implements StudentService {
 		}
 
 		return studentList;
+	}
+
+	@Override
+	@Transactional(rollbackFor = AutomationTransactionException.class)
+	public Student createNewStudent(Student inputStudent) {
+		Student student = new Student(inputStudent);
+		studentDao.saveAndFlush(student);
+
+		return student;
+	}
+
+	@Override
+	public List<Student> getAllStudents() {
+		List<Student> students = studentDao.getAllStudents();
+		return students;
 	}
 
 }

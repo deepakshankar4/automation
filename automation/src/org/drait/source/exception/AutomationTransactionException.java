@@ -7,7 +7,7 @@ import org.springframework.transaction.TransactionException;
 
 /**
  * @author UC167163
- *
+ * 
  */
 public class AutomationTransactionException extends TransactionException {
 
@@ -18,7 +18,11 @@ public class AutomationTransactionException extends TransactionException {
 
 	public AutomationTransactionException(String msg) {
 		super(msg);
-		// TODO Auto-generated constructor stub
+
 	}
 
+	public AutomationTransactionException(String msg, final Throwable cause) {
+		super(msg, cause);
+
+	}
 }

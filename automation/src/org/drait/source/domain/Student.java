@@ -3,15 +3,18 @@
  */
 package org.drait.source.domain;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import org.drait.source.util.uuid.Uuid;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.Type;
 
 /**
  * @author DEEPAK
@@ -19,14 +22,17 @@ import org.hibernate.annotations.Type;
  */
 @Entity
 @Table(name = "STUDENT")
-public class Student {
+public class Student implements Serializable {
+
+	/**
+	 * Generated Serial version ID
+	 */
+	private static final long serialVersionUID = 4681287195328930320L;
 
 	@Id
-	@Column(name = "UUID", unique = true, nullable = false)
-	@GeneratedValue(generator = "UuidIdentifierGenerator")
-	@GenericGenerator(name = "UuidIdentifierGenerator", strategy = "org.drait.source.util.uuid.UuidIdentifierGenerator", parameters = {})
-	@Type(type = "org.drait.source.util.uuid.UuidUserType")
-	private Uuid uuid;
+	@GenericGenerator(name = "generator", strategy = "increment")
+	@GeneratedValue(generator = "generator")
+	private int uuid;
 
 	@Column(name = "USN", nullable = false, unique = true)
 	private String usn;
@@ -58,7 +64,7 @@ public class Student {
 	/**
 	 * @return the uuid
 	 */
-	public Uuid getUuid() {
+	public int getUuid() {
 		return uuid;
 	}
 
@@ -66,7 +72,7 @@ public class Student {
 	 * @param uuid
 	 *            the uuid to set
 	 */
-	public void setUuid(Uuid uuid) {
+	public void setUuid(int uuid) {
 		this.uuid = uuid;
 	}
 
@@ -205,4 +211,68 @@ public class Student {
 		this.email = email;
 	}
 
+	protected Student() {
+
+	}
+
+	public Student(Student inputStudent) {
+		this.address = inputStudent.address;
+		this.email = inputStudent.email;
+		this.guardianName = inputStudent.guardianName;
+		this.lastName = inputStudent.lastName;
+		this.middleInitial = inputStudent.middleInitial;
+		this.phoneNumber = inputStudent.phoneNumber;
+		this.relationWithGuardian = inputStudent.relationWithGuardian;
+		this.studentFirstName = inputStudent.studentFirstName;
+		this.usn = inputStudent.usn;
+	}
+
+	public Student(final String usn, final String firstName,
+			final String lastName) {
+		this.usn = usn;
+		this.studentFirstName = firstName;
+		this.lastName = lastName;
+	}
+
+	@Override
+	public int hashCode() {
+
+		HashCodeBuilder hashCodeBuilder = new HashCodeBuilder();
+		hashCodeBuilder.append(uuid);
+
+		return hashCodeBuilder.toHashCode();
+
+	}
+
+	@Override
+	public boolean equals(final Object object) {
+
+		boolean result = false;
+
+		if (object instanceof Student) {
+			final Student other = (Student) object;
+
+			EqualsBuilder equalsBuilder = new EqualsBuilder();
+			equalsBuilder.append(uuid, other.uuid);
+			equalsBuilder.append(usn, other.usn);
+
+			result = equalsBuilder.isEquals();
+
+		}
+
+		return result;
+	}
+
+	@Override
+	public String toString() {
+
+		ToStringBuilder toStringBuilder = new ToStringBuilder(this);
+		toStringBuilder.append("Student First Name", studentFirstName);
+		toStringBuilder.append("Student Middle Initial", middleInitial);
+		toStringBuilder.append("Student Last Name", lastName);
+		toStringBuilder.append("Student USN", usn);
+		toStringBuilder.append("uuid of tthe student object", uuid);
+
+		return toStringBuilder.toString();
+	}
 }
