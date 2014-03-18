@@ -5,3 +5,5 @@ trimService/**
 pullJars/**
 aitAutomation/**
 swaggerNewDemo/**
+.classpath
+.project
