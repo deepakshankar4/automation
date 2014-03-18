@@ -21,4 +21,6 @@ public interface StudentService {
 
 	List<Student> getAllStudents();
 
+	List<Student> getStudentByUsn(String usn);
+
 }

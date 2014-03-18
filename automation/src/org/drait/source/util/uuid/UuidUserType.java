@@ -10,7 +10,7 @@ import org.hibernate.type.StringType;
 
 public class UuidUserType extends HibernateUserType {
 	// Indicates database type or types
-	private static final int[] TYPES = { Types.CHAR };
+	private static final int[] TYPES = { Types.VARCHAR };
 
 	@Override
 	public boolean equals(final Object x, final Object y) {
@@ -42,7 +42,7 @@ public class UuidUserType extends HibernateUserType {
 			final Object value, final int index,
 			final SessionImplementor session) throws SQLException {
 		if (value == null) {
-			statement.setNull(index, Types.CHAR);
+			statement.setNull(index, Types.VARCHAR);
 			StringType.INSTANCE.nullSafeSet(statement, null, index, session);
 		} else {
 			StringType.INSTANCE.nullSafeSet(statement,

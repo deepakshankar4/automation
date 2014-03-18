@@ -10,6 +10,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.drait.source.domain.Student;
 import org.drait.source.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -48,7 +49,8 @@ public class StudentController {
 			throw new IllegalArgumentException("invalid input student name");
 		}
 		List<Student> studentList = new ArrayList<>();
-		studentList = studentService.getStudentByFirstName(studentFirstName);
+		studentList = studentService.getStudentByFirstName("%"
+				+ studentFirstName.toUpperCase() + "%");
 
 		return new ResponseEntity<List<Student>>(studentList, HttpStatus.OK);
 	}
@@ -61,7 +63,8 @@ public class StudentController {
 			throw new IllegalArgumentException("invalid input student name");
 		}
 		List<Student> studentList = new ArrayList<>();
-		studentList = studentService.getStudentByLastName(studentLastName);
+		studentList = studentService.getStudentByLastName("%"
+				+ studentLastName.toUpperCase() + "%");
 
 		return new ResponseEntity<List<Student>>(studentList, HttpStatus.OK);
 	}
@@ -69,7 +72,22 @@ public class StudentController {
 	@RequestMapping(method = RequestMethod.POST)
 	@ApiOperation(value = "Create Student", notes = "new student is added to the STUDENT table.")
 	public ResponseEntity<Student> addStudent(@RequestBody final Student student) {
-		Student newStudent = new Student(student);
-		return new ResponseEntity<Student>(newStudent, HttpStatus.OK);
+		Student newStudent = null;
+
+		try {
+			newStudent = studentService.createNewStudent(student);
+
+		} catch (DataIntegrityViolationException ex) {
+			List<Student> studentList = studentService.getStudentByUsn(student
+					.getUsn());
+			for (Student students : studentList) {
+				students = studentList.get(0);
+				newStudent = students;
+			}
+
+			return new ResponseEntity<Student>(newStudent, HttpStatus.OK);
+
+		}
+		return new ResponseEntity<Student>(newStudent, HttpStatus.CREATED);
 	}
 }

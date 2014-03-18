@@ -5,6 +5,7 @@ package org.drait.source.service.impl;
 
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.drait.source.dao.StudentDao;
 import org.drait.source.domain.Student;
 import org.drait.source.exception.AutomationTransactionException;
@@ -28,8 +29,8 @@ public class StudentServiceImpl implements StudentService {
 		List<Student> studentList = studentDao
 				.getStudentDetailsByFirstName(fName);
 		if (studentList.size() == 0) {
-			throw new IllegalArgumentException("No students with name " + fName
-					+ " found!");
+			throw new IllegalArgumentException("No students with name "
+					+ StringUtils.remove(fName, "%").toString() + " found!");
 		}
 
 		return studentList;
@@ -40,8 +41,8 @@ public class StudentServiceImpl implements StudentService {
 		List<Student> studentList = studentDao
 				.getStudentDetailsByLastName(lName);
 		if (studentList.size() == 0) {
-			throw new IllegalArgumentException("No students with name " + lName
-					+ " found!");
+			throw new IllegalArgumentException("No students with name "
+					+ StringUtils.remove(lName, "%").toString() + " found!");
 		}
 
 		return studentList;
@@ -51,14 +52,19 @@ public class StudentServiceImpl implements StudentService {
 	@Transactional(rollbackFor = AutomationTransactionException.class)
 	public Student createNewStudent(Student inputStudent) {
 		Student student = new Student(inputStudent);
-		studentDao.saveAndFlush(student);
+		return studentDao.saveAndFlush(student);
 
-		return student;
 	}
 
 	@Override
 	public List<Student> getAllStudents() {
 		List<Student> students = studentDao.getAllStudents();
+		return students;
+	}
+
+	@Override
+	public List<Student> getStudentByUsn(String usn) {
+		List<Student> students = studentDao.getStudentByUuid(usn);
 		return students;
 	}
 

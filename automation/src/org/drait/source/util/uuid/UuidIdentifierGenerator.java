@@ -5,6 +5,11 @@ import java.io.Serializable;
 import org.hibernate.engine.spi.SessionImplementor;
 import org.hibernate.id.SequenceGenerator;
 
+/**
+ * 
+ * @author DEEPAK
+ *
+ */
 public class UuidIdentifierGenerator extends SequenceGenerator {
 
 	@Override

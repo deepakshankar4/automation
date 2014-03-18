@@ -25,7 +25,8 @@
 
 	<context:component-scan base-package="org.drait.source"></context:component-scan>
 
-	<context:property-placeholder location="classpath:database.properties" />
+	<context:property-placeholder
+		location="classpath:datasource/database.properties" />
 
 	<!-- ==================================== -->
 	<!-- Spring Data Repository configuration -->
@@ -51,7 +52,7 @@
 	<beans:bean id="entityManagerFactory"
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
 		<beans:property name="persistenceUnitName" value="automation" />
-
+		<beans:property name="persistenceXmlLocation" value="classpath:jpa/persistence.xml"></beans:property>
 		<beans:property name="dataSource" ref="dataSource" />
 		<beans:property name="jpaVendorAdapter">
 			<beans:bean
@@ -93,7 +94,7 @@
 		in the /WEB-INF/views directory -->
 	<beans:bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<beans:property name="prefix" value="/" />
+		<beans:property name="prefix" value="/views/" />
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 

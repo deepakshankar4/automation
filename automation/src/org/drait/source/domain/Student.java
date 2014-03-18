@@ -14,7 +14,9 @@ import javax.persistence.Table;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.drait.source.util.uuid.Uuid;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
 
 /**
  * @author DEEPAK
@@ -30,9 +32,11 @@ public class Student implements Serializable {
 	private static final long serialVersionUID = 4681287195328930320L;
 
 	@Id
-	@GenericGenerator(name = "generator", strategy = "increment")
-	@GeneratedValue(generator = "generator")
-	private int uuid;
+	@Column(name = "UUID", unique = true, nullable = false)
+	@GeneratedValue(generator = "UuidIdentifierGenerator")
+	@GenericGenerator(name = "UuidIdentifierGenerator", strategy = "org.drait.source.util.uuid.UuidIdentifierGenerator", parameters = {})
+	@Type(type = "org.drait.source.util.uuid.UuidUserType")
+	private Uuid uuid;
 
 	@Column(name = "USN", nullable = false, unique = true)
 	private String usn;
@@ -64,7 +68,7 @@ public class Student implements Serializable {
 	/**
 	 * @return the uuid
 	 */
-	public int getUuid() {
+	public Uuid getUuid() {
 		return uuid;
 	}
 
@@ -72,7 +76,7 @@ public class Student implements Serializable {
 	 * @param uuid
 	 *            the uuid to set
 	 */
-	public void setUuid(int uuid) {
+	public void setUuid(Uuid uuid) {
 		this.uuid = uuid;
 	}
 
@@ -88,7 +92,7 @@ public class Student implements Serializable {
 	 *            the usn to set
 	 */
 	public void setUsn(String usn) {
-		this.usn = usn;
+		this.usn = usn.toUpperCase();
 	}
 
 	/**
@@ -103,7 +107,7 @@ public class Student implements Serializable {
 	 *            the studentFirstName to set
 	 */
 	public void setStudentFirstName(String studentFirstName) {
-		this.studentFirstName = studentFirstName;
+		this.studentFirstName = studentFirstName.toUpperCase();
 	}
 
 	/**
@@ -118,7 +122,7 @@ public class Student implements Serializable {
 	 *            the middleInitial to set
 	 */
 	public void setMiddleInitial(Character middleInitial) {
-		this.middleInitial = middleInitial;
+		this.middleInitial = Character.toUpperCase(middleInitial);
 	}
 
 	/**
@@ -133,7 +137,7 @@ public class Student implements Serializable {
 	 *            the lastName to set
 	 */
 	public void setLastName(String lastName) {
-		this.lastName = lastName;
+		this.lastName = lastName.toUpperCase();
 	}
 
 	/**
@@ -148,7 +152,7 @@ public class Student implements Serializable {
 	 *            the guardianName to set
 	 */
 	public void setGuardianName(String guardianName) {
-		this.guardianName = guardianName;
+		this.guardianName = guardianName.toUpperCase();
 	}
 
 	/**
@@ -163,7 +167,7 @@ public class Student implements Serializable {
 	 *            the relationWithGuardian to set
 	 */
 	public void setRelationWithGuardian(String relationWithGuardian) {
-		this.relationWithGuardian = relationWithGuardian;
+		this.relationWithGuardian = relationWithGuardian.toUpperCase();
 	}
 
 	/**
@@ -178,7 +182,7 @@ public class Student implements Serializable {
 	 *            the address to set
 	 */
 	public void setAddress(String address) {
-		this.address = address;
+		this.address = address.toUpperCase();
 	}
 
 	/**
@@ -219,19 +223,22 @@ public class Student implements Serializable {
 		this.address = inputStudent.address;
 		this.email = inputStudent.email;
 		this.guardianName = inputStudent.guardianName;
-		this.lastName = inputStudent.lastName;
-		this.middleInitial = inputStudent.middleInitial;
+		this.lastName = inputStudent.lastName.toUpperCase();
+
+		if (null != inputStudent.middleInitial)
+			this.middleInitial = Character
+					.toUpperCase(inputStudent.middleInitial);
 		this.phoneNumber = inputStudent.phoneNumber;
 		this.relationWithGuardian = inputStudent.relationWithGuardian;
-		this.studentFirstName = inputStudent.studentFirstName;
-		this.usn = inputStudent.usn;
+		this.studentFirstName = inputStudent.studentFirstName.toUpperCase();
+		this.usn = inputStudent.usn.toUpperCase();
 	}
 
 	public Student(final String usn, final String firstName,
 			final String lastName) {
-		this.usn = usn;
-		this.studentFirstName = firstName;
-		this.lastName = lastName;
+		this.usn = usn.toUpperCase();
+		this.studentFirstName = firstName.toUpperCase();
+		this.lastName = lastName.toUpperCase();
 	}
 
 	@Override

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration PUBLIC "-//LOGGER" "http://logging.apache.org/log4j/1.2/apidocs/org/apache/log4j/xml/doc-files/log4j.dtd">
+<log4j:configuration>
+
+	<!-- Console appender used during development -->
+	<appender name="StdoutAppender" class="org.apache.log4j.ConsoleAppender">
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{ISO8601}|%5p|%c{1}|%t|%m%n" />
+		</layout>
+	</appender>
+
+	<!-- Application log file appender -->
+	<appender name="FileAppender" class="org.apache.log4j.RollingFileAppender">
+		<!-- Server location /apps/Codes/MP2/LandingStrips/logs/trimService/ -->
+		<param name="File" value="/apps/Codes/logs/automation/Automation_${container.host}.log" />
+		<param name="MaxFileSize" value="10240KB" />
+		<param name="MaxBackupIndex" value="7" />
+
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{ISO8601}|%5p|%c{1}|%t|%m%n" />
+		</layout>
+	</appender>
+
+	<!-- Auditing log file appender -->
+	<appender name="AuditingAppender" class="org.apache.log4j.RollingFileAppender">
+
+		<param name="File" value="/apps/Codes/logs/automation/Automation_Audit_${container.host}.log" />
+		<param name="MaxFileSize" value="10240KB" />
+		<param name="MaxBackupIndex" value="7" />
+
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{ISO8601}|%5p|%c{1}|%t|%m%n" />
+		</layout>
+	</appender>
+
+	<!-- Set logging level of Hibernate, Springframework etc to Error -->
+	<logger name="org" additivity = "false">
+		<level value="ERROR" />
+		<appender-ref ref ="FileAppender"/>
+	</logger>
+
+	<!-- Logs from aspects are appended using Auditing appender -->
+	<logger name="org.drait.source.aspects" additivity="false">
+		<level value="INFO" />
+		<appender-ref ref="AuditingAppender" />
+	</logger>
+
+	<!-- Log level of the application -->
+	<root>
+		<level value="debug" />
+		<appender-ref ref="FileAppender" />
+	</root>
+
+</log4j:configuration>
