@@ -90,6 +90,17 @@
 	<mvc:resources mapping="application/**" location="/" />
 
 
+	<!-- ============================= -->
+	<!-- CSRF configuration -->
+	<!-- ============================= -->
+
+	<!-- <mvc:interceptors>
+		<beans:bean class="org.drait.security.utility.CSRFHandlerInterceptor">
+
+		</beans:bean>
+
+	</mvc:interceptors> -->
+
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources 
 		in the /WEB-INF/views directory -->
 	<beans:bean

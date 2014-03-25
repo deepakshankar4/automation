@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.knappsack.swagger4springweb.controller.ApiDocumentationController;
 
 /**
- * @author UC167163
+ * @author DEEPAK
  *
  */
 @Controller

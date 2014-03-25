@@ -6,7 +6,11 @@ import java.io.Serializable;
 
 import org.hibernate.usertype.UserType;
 
-
+/**
+ * 
+ * @author DEEPAK
+ *
+ */
 public abstract class HibernateUserType implements UserType
 {
     @Override

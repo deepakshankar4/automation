@@ -6,6 +6,7 @@ package org.drait.source.service.impl;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.log4j.Logger;
 import org.drait.source.dao.StudentDao;
 import org.drait.source.domain.Student;
 import org.drait.source.exception.AutomationTransactionException;
@@ -21,6 +22,8 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class StudentServiceImpl implements StudentService {
 
+	public static final Logger LOGGER = Logger
+			.getLogger(StudentServiceImpl.class);
 	@Autowired
 	private StudentDao studentDao;
 
@@ -51,7 +54,12 @@ public class StudentServiceImpl implements StudentService {
 	@Override
 	@Transactional(rollbackFor = AutomationTransactionException.class)
 	public Student createNewStudent(Student inputStudent) {
-		Student student = new Student(inputStudent);
+
+		LOGGER.debug("Trying to create new Student "
+				+ inputStudent.getStudentFirstName() + " with USN: "
+				+ inputStudent.getUsn());
+
+		Student student = inputStudent;
 		return studentDao.saveAndFlush(student);
 
 	}

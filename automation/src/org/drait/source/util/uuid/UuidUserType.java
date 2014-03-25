@@ -8,6 +8,11 @@ import java.sql.Types;
 import org.hibernate.engine.spi.SessionImplementor;
 import org.hibernate.type.StringType;
 
+/**
+ * 
+ * @author DEEPAK
+ *
+ */
 public class UuidUserType extends HibernateUserType {
 	// Indicates database type or types
 	private static final int[] TYPES = { Types.VARCHAR };

@@ -6,7 +6,7 @@ package org.drait.source.exception;
 import org.springframework.transaction.TransactionException;
 
 /**
- * @author UC167163
+ * @author DEEPAK
  * 
  */
 public class AutomationTransactionException extends TransactionException {

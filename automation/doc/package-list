@@ -1,0 +1,10 @@
+org.drait.headers.errorandstatuscodes
+org.drait.source.dao
+org.drait.source.dao.impl
+org.drait.source.domain
+org.drait.source.exception
+org.drait.source.rest.resources
+org.drait.source.service
+org.drait.source.service.impl
+org.drait.source.util.enumtype
+org.drait.source.util.uuid

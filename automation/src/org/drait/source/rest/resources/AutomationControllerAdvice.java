@@ -4,19 +4,14 @@
 package org.drait.source.rest.resources;
 
 import org.apache.commons.lang3.exception.ExceptionUtils;
-
 import org.apache.log4j.Logger;
-
-import org.drait.source.exception.AutomationBadRequestException;
 import org.drait.source.exception.AutomationBusinessException;
-import org.drait.source.exception.AutomationResourceNotFoundException;
 import org.drait.source.exception.AutomationTransactionException;
-
+import org.drait.source.rest.exception.AutomationBadRequestException;
+import org.drait.source.rest.exception.AutomationResourceNotFoundException;
 import org.springframework.core.NestedRuntimeException;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 

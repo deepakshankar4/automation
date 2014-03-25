@@ -6,6 +6,10 @@
 
 <head>
 <title>Automation</title>
+
+
+
+
 <link href='http://fonts.googleapis.com/css?family=Droid+Sans:400,700'
 	rel='stylesheet' type='text/css' />
 <link
@@ -40,6 +44,7 @@
 	type='text/javascript'></script>
 <script src='/automation/resources/swagger-ui/lib/swagger-oauth.js'
 	type='text/javascript'></script>
+
 
 <%--<style type="text/css">--%>
 <%--.swagger-ui-wrap {--%>
@@ -108,6 +113,7 @@
 </head>
 
 <body>
+
 	<nav class="navbar navbar-default navbar-static-top" role="navigation">
 		<div class="button">
 			<a href="/automation/" class="navbar-brand"><span
@@ -121,6 +127,7 @@
 			</ol>
 		</div>
 	</nav>
+
 
 	<div id="message-bar" class="swagger-ui-wrap">&nbsp;</div>
 

@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html >
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:tiles="http://www.thymeleaf.org">
 <head>
 <meta charset="utf-8">
 <link
@@ -16,6 +18,7 @@
 			<a href="/automation/" class="navbar-brand"><span
 				class="glyphicon glyphicon-home"></span> Automation home</a>
 		</div>
+
 		<div class="navbar-right">
 			<ol class="breadcrumb">
 				<li class="active">Home</li>
@@ -24,6 +27,7 @@
 			</ol>
 		</div>
 	</nav>
+
 	<div class="container">
 		<div class="well">
 			<div class="row">

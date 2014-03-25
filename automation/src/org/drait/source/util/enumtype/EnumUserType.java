@@ -26,6 +26,7 @@ import org.hibernate.usertype.ParameterizedType;
 
 /**
  * Hibernate custom user type for enum.
+ * @author DEEPAK
  * 
  */
 public class EnumUserType extends HibernateUserType implements
