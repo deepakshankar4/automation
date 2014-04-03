@@ -41,6 +41,9 @@ public class Student implements Serializable {
 	@Column(name = "USN", nullable = false, unique = true)
 	private String usn;
 
+	@Column(name = "MENTOR", unique = true)
+	private Uuid mentorUuid;
+
 	@Column(name = "FIRST_NAME", nullable = false)
 	private String studentFirstName;
 
@@ -93,6 +96,20 @@ public class Student implements Serializable {
 	 */
 	public void setUsn(String usn) {
 		this.usn = usn.toUpperCase();
+	}
+
+	/**
+	 * @return the mentorUuid
+	 */
+	public Uuid getMentorUuid() {
+		return mentorUuid;
+	}
+
+	/**
+	 * @param mentorUuid the mentorUuid to set
+	 */
+	public void setMentorUuid(Uuid mentorUuid) {
+		this.mentorUuid = mentorUuid;
 	}
 
 	/**

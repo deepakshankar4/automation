@@ -12,11 +12,14 @@ import org.springframework.web.servlet.ModelAndView;
  * @author DEEPAK
  * 
  */
-@Controller
+@Controller(value = "Login Controller")
+@RequestMapping(value = "/login")
 public class LoginController {
 
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView loginController() {
+
+		System.out.println("inside login controller");
 		return new ModelAndView("login");
 	}
 

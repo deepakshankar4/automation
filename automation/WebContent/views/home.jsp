@@ -37,6 +37,11 @@
 					<h3>
 						<a href="/automation/documentation/"> API <small>Documentation</small></a>
 					</h3>
+					<h3>
+						<a href="/automation/application/automation-ui/"> User
+							Interface <small>alpha</small>
+						</a>
+					</h3>
 				</div>
 			</div>
 		</div>

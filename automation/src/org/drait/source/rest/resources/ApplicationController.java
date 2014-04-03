@@ -26,8 +26,6 @@ public class ApplicationController {
 	private static final Logger LOGGER = Logger
 			.getLogger(ApplicationController.class.getName());
 
-	
-
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView home(Locale locale, Model model) {
 		LOGGER.info("Welcome to TRIM! The client locale is " + locale);
@@ -42,6 +40,11 @@ public class ApplicationController {
 
 		ModelAndView modelAndView = new ModelAndView("home");
 		return modelAndView;
+	}
+
+	@RequestMapping(value = "/automation-ui", method = RequestMethod.GET)
+	public ModelAndView automationUIRenderer() {
+		return new ModelAndView("student-details");
 	}
 
 }

@@ -18,26 +18,21 @@
 </head>
 <body>
 
-	<%
-		out.println(session.isNew());
-		if (session.isNew())
-			response.sendRedirect("/automation/");
-	%>
-
+	
 	<div class="container">
 
 		<div class="row" style="margin-top: 20px">
 
 
 			<br> <br> <img class="pull-left" height="200" width="160"
-				src="/automation/non-secure-content/images/LOGO.jpg" alt='' /></a>
+				src="/automation/non-secure-content/images/LOGO.jpg" alt='' />
 
 
 
 			<div
 				class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
 
-				<form role="form" action="/automation/login" , method="post">
+				<form action="/automation/login" method="post">
 					<fieldset>
 						<%-- <div th:if="${param.error }" class="alert alert-danger">Invalid
 							username or password</div> --%>
