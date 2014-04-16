@@ -30,13 +30,18 @@ app.controller('createController', function CreateNewStudentController($scope,
 				'Content-Type' : 'application/json'
 			}
 		}).success(function(data, status, headers, config) {
-			$scope.newStudent = data;
-			window.alert("clicked");
+			$scope.createStatus = 'success';
 
 		}).error(function(data, status, headers, config) {
-			$scope.status = status;
-			window.alert("OOPS!!!");
+			$scope.createStatus = 'failure';
+
 		});
 
+		if($scope.createStatus == "success"){
+			$scope.errorClass = '';
+		}
+		else{
+			$scope.errorClass = '';
+		}
 	};
 });

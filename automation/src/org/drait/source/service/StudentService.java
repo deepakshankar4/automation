@@ -22,5 +22,15 @@ public interface StudentService {
 	List<Student> getAllStudents();
 
 	List<Student> getStudentByUsn(String usn);
+	
+	Student getStudentByUuid(String uuid);
+
+	Student findOne(Student student);
+
+	void softDelete(Student deletingStudent);
+
+	void delete(Student deletingStudent);
+
+	Student activateStudent(Student activateStudent);
 
 }

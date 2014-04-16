@@ -28,7 +28,7 @@ public class ApplicationController {
 
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView home(Locale locale, Model model) {
-		LOGGER.info("Welcome to TRIM! The client locale is " + locale);
+		LOGGER.info("Welcome to AUTOMATION! The client locale is " + locale);
 
 		Date date = new Date();
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG,

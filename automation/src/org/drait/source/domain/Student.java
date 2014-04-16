@@ -68,6 +68,9 @@ public class Student implements Serializable {
 	@Column(name = "EMAIL")
 	private String email;
 
+	@Column(name = "STATUS")
+	private Liveliness status;
+
 	/**
 	 * @return the uuid
 	 */
@@ -106,7 +109,8 @@ public class Student implements Serializable {
 	}
 
 	/**
-	 * @param mentorUuid the mentorUuid to set
+	 * @param mentorUuid
+	 *            the mentorUuid to set
 	 */
 	public void setMentorUuid(Uuid mentorUuid) {
 		this.mentorUuid = mentorUuid;
@@ -230,6 +234,21 @@ public class Student implements Serializable {
 	 */
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	/**
+	 * @return the status
+	 */
+	public Liveliness getStatus() {
+		return status;
+	}
+
+	/**
+	 * @param status
+	 *            the status to set
+	 */
+	public void setStatus(Liveliness status) {
+		this.status = status;
 	}
 
 	protected Student() {

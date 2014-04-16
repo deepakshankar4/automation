@@ -125,6 +125,9 @@
 
 				<li class="active">Documentation</li>
 			</ol>
+			<form action="/automation/logout" method="get">
+				<button type="submit" class="btn btn-warning">Logout</button>
+			</form>
 		</div>
 	</nav>
 

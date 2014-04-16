@@ -6,7 +6,6 @@ package org.drait.source.domain;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -16,7 +15,6 @@ import com.fasterxml.jackson.annotation.JsonFormat;
  */
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
 @Entity
-@Table(name = "DEPARTMENT")
 public enum Department {
 
 	/**

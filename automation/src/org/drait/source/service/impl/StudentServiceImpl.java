@@ -8,6 +8,7 @@ import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.drait.source.dao.StudentDao;
+import org.drait.source.domain.Liveliness;
 import org.drait.source.domain.Student;
 import org.drait.source.exception.AutomationTransactionException;
 import org.drait.source.service.StudentService;
@@ -60,6 +61,7 @@ public class StudentServiceImpl implements StudentService {
 				+ inputStudent.getUsn());
 
 		Student student = inputStudent;
+		student.setStatus(Liveliness.INACTIVE);
 		return studentDao.saveAndFlush(student);
 
 	}
@@ -74,6 +76,49 @@ public class StudentServiceImpl implements StudentService {
 	public List<Student> getStudentByUsn(String usn) {
 		List<Student> students = studentDao.getStudentByUuid(usn);
 		return students;
+	}
+
+	@Override
+	public Student getStudentByUuid(String uuid) {
+		Student newStudent = null;
+		List<Student> students = studentDao.findOneByUuid(uuid);
+		for (Student student : students) {
+
+			newStudent = student;
+
+		}
+		return newStudent;
+	}
+
+	@Override
+	public Student findOne(Student student) {
+
+		return studentDao.findOne(student.getUuid());
+	}
+
+	@Override
+	@Transactional
+	public void softDelete(Student deletingStudent) {
+
+		deletingStudent.setStatus(Liveliness.DELETED);
+
+	}
+
+	@Override
+	@Transactional
+	public void delete(Student deletingStudent) {
+
+		studentDao.delete(deletingStudent);
+
+	}
+
+	@Override
+	@Transactional
+	public Student activateStudent(Student activateStudent) {
+		activateStudent.setStatus(Liveliness.ALIVE);
+
+		studentDao.saveAndFlush(activateStudent);
+		return activateStudent;
 	}
 
 }

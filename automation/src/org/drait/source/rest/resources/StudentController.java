@@ -7,7 +7,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
+import org.drait.headers.errorandstatuscodes.StatusCodes;
+import org.drait.source.domain.Liveliness;
 import org.drait.source.domain.Student;
+import org.drait.source.exception.AutomationBusinessException;
+import org.drait.source.service.StudentDepartmentService;
 import org.drait.source.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -21,6 +25,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.ApiParam;
+import com.wordnik.swagger.annotations.ApiResponse;
+import com.wordnik.swagger.annotations.ApiResponses;
 
 /**
  * @author DEEPAK
@@ -32,6 +38,9 @@ public class StudentController {
 
 	@Autowired
 	private StudentService studentService;
+
+	@Autowired
+	private StudentDepartmentService studentDepartmentService;
 
 	@RequestMapping(method = RequestMethod.GET)
 	@ApiOperation(value = "Get all students from STUDENT table", notes = "fetch all the student records from the STUDENT table.")
@@ -89,5 +98,88 @@ public class StudentController {
 
 		}
 		return new ResponseEntity<Student>(newStudent, HttpStatus.CREATED);
+	}
+
+	@RequestMapping(value = "/delete", method = RequestMethod.DELETE)
+	@ApiOperation(value = "Delete Student operation", notes = "perform a soft delete on an existing student.")
+	@ApiResponses(value = {
+			@ApiResponse(code = StatusCodes.OK, message = "successful delete"),
+			@ApiResponse(code = StatusCodes.BAD_REQUEST, message = "Could not perform the operation") })
+	public ResponseEntity<String> deleteStudent(
+			@RequestBody final Student student)
+			throws AutomationBusinessException {
+
+		// check if student exists
+		Student deletingStudent = studentService.findOne(student);
+
+		if (null == deletingStudent) {
+			throw new IllegalArgumentException("Not a valid Student component");
+		}
+
+		if (deletingStudent.getStatus() == Liveliness.INACTIVE) {
+			studentService.delete(deletingStudent);
+			return new ResponseEntity<String>("delete successful",
+					HttpStatus.OK);
+		}
+		// delete the association with department against the student
+
+		try {
+
+			studentDepartmentService.deleteAssociation(deletingStudent);
+
+		} catch (Exception ex) {
+			throw new AutomationBusinessException(
+					"Could not perform the operation", ex);
+		}
+
+		try {
+			studentService.softDelete(deletingStudent);
+		} catch (Exception ex) {
+
+			throw new AutomationBusinessException(
+					"Could not perform the operation", ex);
+		}
+
+		return new ResponseEntity<String>("success", HttpStatus.OK);
+
+	}
+
+	@RequestMapping(value = "/activate", method = RequestMethod.PUT)
+	@ApiOperation(value = "Activate Student operation", notes = "perform activation on inactive student component.")
+	@ApiResponses(value = {
+			@ApiResponse(code = StatusCodes.OK, message = "successful activation"),
+			@ApiResponse(code = StatusCodes.BAD_REQUEST, message = "Could not perform the operation") })
+	public ResponseEntity<Student> activateStudent(
+			@RequestBody final Student student)
+			throws AutomationBusinessException {
+		Student activateStudent;
+
+		/* check for valid student component */
+
+		activateStudent = studentService.findOne(student);
+		if (null == activateStudent) {
+			throw new IllegalArgumentException(
+					"Invalid student component detected!");
+		}
+
+		/*
+		 * check the validity of student status. allow only inactive student
+		 * component for activation
+		 */
+
+		if (activateStudent.getStatus() != Liveliness.INACTIVE) {
+			throw new IllegalArgumentException(
+					"not a valid student component for activation! confirm student component first");
+
+		}
+
+		try {
+
+			activateStudent = studentService.activateStudent(activateStudent);
+		} catch (Exception ex) {
+			throw new AutomationBusinessException("Could not perform action!",
+					ex);
+		}
+		return new ResponseEntity<Student>(activateStudent, HttpStatus.OK);
 	}
 }

@@ -25,6 +25,9 @@
 
 				<li><a href="/automation/documentation/">Documentation</a></li>
 			</ol>
+			<form action="/automation/logout" method="get">
+				<button type="submit" class="btn btn-warning">Logout</button>
+			</form>
 		</div>
 	</nav>
 

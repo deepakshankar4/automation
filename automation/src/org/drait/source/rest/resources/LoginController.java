@@ -12,10 +12,9 @@ import org.springframework.web.servlet.ModelAndView;
  * @author DEEPAK
  * 
  */
-@Controller(value = "Login Controller")
+@Controller
 @RequestMapping(value = "/login")
 public class LoginController {
-
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView loginController() {
 

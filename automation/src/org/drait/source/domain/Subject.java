@@ -33,6 +33,9 @@ public class Subject {
 	@Column(name = "SUBJECT_CODE")
 	private String subjectCode;
 
+	@Column(name = "SUBJECT_CREDITS")
+	private float credits;
+
 	/**
 	 * @return the uuid
 	 */
@@ -76,6 +79,21 @@ public class Subject {
 	 */
 	public void setSubjectCode(String subjectCode) {
 		this.subjectCode = subjectCode;
+	}
+
+	/**
+	 * @return the credits
+	 */
+	public float getCredits() {
+		return credits;
+	}
+
+	/**
+	 * @param credits
+	 *            the credits to set
+	 */
+	public void setCredits(float credits) {
+		this.credits = credits;
 	}
 
 }

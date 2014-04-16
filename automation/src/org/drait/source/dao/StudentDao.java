@@ -39,4 +39,7 @@ public interface StudentDao extends JpaRepository<Student, Uuid> {
 
 	@Query(value = "SELECT * FROM STUDENT WHERE USN = ?1", nativeQuery = true)
 	List<Student> getStudentByUuid(String usn);
+
+	@Query(value = "SELECT * FROM STUDENT WHERE UUID = ?1", nativeQuery = true)
+	List<Student> findOneByUuid(String uuid);
 }
