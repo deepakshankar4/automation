@@ -23,7 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class LogoutController {
 
 	@RequestMapping(method = RequestMethod.GET)
-	public ModelAndView logoutAuthenticatedUser(HttpServletRequest request,
+	public void logoutAuthenticatedUser(HttpServletRequest request,
 			HttpServletResponse response) {
 
 		System.out.println("logout called!!!");
@@ -38,7 +38,7 @@ public class LogoutController {
 		SecurityContextHolder.getContext().setAuthentication(null);
 
 		System.out.println("successful logout of: " + user);
-		return new ModelAndView("home");
+
 	}
 
 }
