@@ -2,5 +2,5 @@ Manifest-Version: 1.0
 Build-Jdk: 1.7.0_51
 Built-By: UC167163
 Created-By: Maven Integration for Eclipse
-Main-Class: org.drait.Application
+Main-Class: org.drait.automation.source.Application
 

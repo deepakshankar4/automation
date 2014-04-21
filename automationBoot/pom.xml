@@ -3,12 +3,12 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>org.drait</groupId>
-	<artifactId>automation</artifactId>
+	<groupId>org.automation.boot</groupId>
+	<artifactId>automationBoot</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 
 	<name>automationBoot</name>
-	<description>internal project</description>
+	<description>Automation boot project</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -19,45 +19,17 @@
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-aop</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-jpa</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-jms</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-security</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-thymeleaf</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-jdbc</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-rest</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
+			<scope>test</scope>
 		</dependency>
 	</dependencies>
 
 	<properties>
-		<start-class>org.drait.Application</start-class>
+		<start-class>org.drait.automation.source.Application</start-class>
 		<java.version>1.7</java.version>
 	</properties>
 
@@ -70,4 +42,8 @@
 		</plugins>
 	</build>
 
+	<organization>
+		<name>The Liliac</name>
+		<url>www.theliliac.com</url>
+	</organization>
 </project>
