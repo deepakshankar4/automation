@@ -3,6 +3,7 @@
  */
 package org.drait.system.boot;
 
+
 import javax.servlet.ServletContext;
 import javax.servlet.ServletRegistration;
 
@@ -22,6 +23,7 @@ public class ApplicationBooter implements WebApplicationInitializer {
 
 	@Override
 	public void onStartup(ServletContext container) {
+
 		XmlWebApplicationContext appContext = new XmlWebApplicationContext();
 		appContext.setConfigLocations(contexts);
 		ServletRegistration.Dynamic registration = container.addServlet(
